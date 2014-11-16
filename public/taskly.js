@@ -47,6 +47,7 @@
     $rootScope.$on('task-selected', function(e, task) {
 
       this.task.value = task.name;
+      this.task.focus();
 
     }.bind(taskForm));
 
