@@ -5,7 +5,7 @@
 
   taskList.provider('Tasks', function() {
 
-    var tasks = [];
+    var tasks = [], nowSelected = -1;
 
     return {
 
@@ -13,12 +13,24 @@
         tasks = newTasks
       },
 
-      $get: function() {
+      $get: function($rootScope) {
+
         return {
+
           list: tasks,
-          newTask: function(task) {
-            tasks.push(task)
+
+          save: function(task) {
+
+            tasks[ nowSelected > -1 ? nowSelected : tasks.length ] = task;
+            nowSelected = -1;
+
+          },
+
+          selected: function(index) {
+            nowSelected = index;
+            $rootScope.$broadcast('task-selected', tasks[nowSelected]);
           }
+
         }
       }
 
@@ -39,6 +51,12 @@
       link: function($scope) {
 
         $scope.tasks = Tasks.list;
+
+        $scope.select = function(index) {
+
+          Tasks.selected(index);
+
+        }
 
       }
 

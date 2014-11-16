@@ -23,7 +23,7 @@
 
       e.preventDefault();
 
-      Tasks.newTask({ name: this.task.value });
+      Tasks.save({ name: this.task.value });
 
       $rootScope.$digest();
 
@@ -31,6 +31,13 @@
 
     }.bind(taskForm));
 
+    $rootScope.$on('task-selected', function(e, task) {
+
+      this.task.value = task.name;
+
+    }.bind(taskForm));
+
   });
+
 
 }(angular));
