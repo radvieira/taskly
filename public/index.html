@@ -19,26 +19,26 @@
 
       <div class="row">
 
+        <div class="col-md-2"></div>
+
         <section class="col-md-8">
 
-          <h2>To Do</h2>
-
-          <form class="form-horizontal task-entry">
+          <form class="task-entry">
             <div class="form-group">
-              <label class="col-sm-2 control-label">Name</label>
-              <div class="col-sm-10">
-                <input type="text" name="task" class="form-control" placeholder="what do you need to do?"
+                <input type="text" name="task" class="form-control" placeholder="What do you need to do?"
                        autocomplete="off">
-              </div>
             </div>
           </form>
 
+          <div data-ng-app="taskly">
+
+            <task-list></task-list>
+
+          </div>
+
         </section>
 
-        <section data-ng-app="taskly" class="col-md-4">
-          <h2>To Dos</h2>
-          <task-list></task-list>
-        </section>
+        <div class="col-md-2"></div>
 
       </div>
 
