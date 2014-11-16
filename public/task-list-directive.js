@@ -21,7 +21,13 @@
 
           Tasks.selected(index);
 
-        }
+        };
+
+        $scope.complete = function(index) {
+
+          Tasks.completed(index);
+
+        };
 
       }
 

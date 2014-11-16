@@ -51,6 +51,21 @@
 
     }.bind(taskForm));
 
+    $rootScope.$on('task-completed', function(e, task) {
+
+      var message = document.createElement('p');
+      message.classList.add('alert');
+      message.classList.add('alert-success');
+      message.innerHTML = task.name + ' <strong>Completed!</strong>'
+
+      this.appendChild(message);
+
+      setTimeout(function() {
+        this.removeChild(message);
+      }.bind(taskForm), 1500);
+
+    }.bind(taskForm));
+
   });
 
 

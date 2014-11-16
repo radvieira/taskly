@@ -5,7 +5,7 @@
 
   taskList.provider('Tasks', function() {
 
-    var tasks = [], nowSelected = -1;
+    var tasks = [], nowEditing = -1;
 
     return {
 
@@ -21,21 +21,27 @@
 
           save: function (task) {
 
-            tasks[nowSelected > -1 ? nowSelected : tasks.length] = task;
-            nowSelected = -1;
+            tasks[nowEditing > -1 ? nowEditing : tasks.length] = task;
+            nowEditing = -1;
 
           },
 
           selected: function (index) {
-            nowSelected = index;
-            $rootScope.$broadcast('task-selected', tasks[nowSelected]);
+            nowEditing = index;
+            $rootScope.$broadcast('task-selected', tasks[nowEditing]);
+          },
+
+          completed: function(index) {
+            var task = tasks[index];
+            tasks.splice(index, 1);
+            $rootScope.$broadcast('task-completed', task);
           }
 
         }
       }
 
     }
-  })
 
+  });
 
 }(angular));
