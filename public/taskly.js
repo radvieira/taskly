@@ -1,3 +1,16 @@
+/**
+ * A demonstration of integrating Angular and non-angular.
+ *
+ * Taskly is a web application with a part of its page being a TaskList Angular App.
+ * Taskly, initializes the TaskList App by getting a handle on the TaskList's TaskProvider and setting
+ * up its initial list of tasks.
+ *
+ * A submit handler is bound to Taskly's non-Angular form and upon submission Taskly creates a new Task by adding it to
+ * the Task service.  Taskly triggers a digest cycle so Angular can update the TaskList view.
+ *
+ * Taskly, binds to a 'task-selected' event broadcasted by the Tasks service to update
+ * the form's display value for editing.
+ */
 
 ;(function(ng) {
 
