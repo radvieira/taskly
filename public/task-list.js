@@ -3,17 +3,27 @@
 
   var taskList = ng.module('task-list', []);
 
-  taskList.factory('TaskFactory', function() {
+  taskList.provider('Tasks', function() {
+
+    var tasks = [];
 
     return {
-      tasks: [{
-        name: 'Get some milk!'
-      }]
+
+      init: function(newTasks) {
+        tasks = newTasks
+      },
+
+      $get: function() {
+        return {
+          tasks: tasks
+        }
+      }
+
     }
 
   });
 
-  taskList.directive('taskList', function(TaskFactory) {
+  taskList.directive('taskList', function(Tasks) {
 
     return {
 
@@ -27,7 +37,7 @@
 
       link: function($scope) {
 
-        $scope.tasks = TaskFactory.tasks;
+        $scope.tasks = Tasks.tasks;
 
       }
 
