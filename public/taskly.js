@@ -14,12 +14,16 @@
 
 ;(function(ng) {
 
-  var taskly = ng.module('taskly', ['task-list']);
+  var taskly = ng.module('taskly', ['task-list']),
 
+    taskForm = document.querySelector('.task-entry');
+
+  taskForm.task.focus();
+
+  //configure the Task list with a list of tasks
+  //this can come from anywhere - async requires manual bootstrapping
   taskly.config(function(TasksProvider) {
 
-    //configure the Task list with a list of tasks
-    //this can come from anywhere - async requires manual bootrapping
     TasksProvider.init([{
 
       name: 'Get some milk!'
@@ -28,9 +32,8 @@
 
   });
 
+  //add or update tasks by listing to non-angular form submits
   taskly.run(function($rootScope, Tasks) {
-
-    var taskForm = document.querySelector('.task-entry');
 
     taskForm.addEventListener('submit', function(e) {
 
@@ -44,12 +47,22 @@
 
     }.bind(taskForm));
 
+  });
+
+  //listen for task-selected event and update the non-angular input field
+  taskly.run(function($rootScope) {
+
     $rootScope.$on('task-selected', function(e, task) {
 
       this.task.value = task.name;
       this.task.focus();
 
     }.bind(taskForm));
+
+  });
+
+  //listen for task-completed event and update non-angular elements
+  taskly.run(function($rootScope) {
 
     $rootScope.$on('task-completed', function(e, task) {
 
@@ -67,6 +80,5 @@
     }.bind(taskForm));
 
   });
-
 
 }(angular));
