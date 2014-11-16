@@ -1,0 +1,25 @@
+{
+  "name": "ng-ify",
+  "version": "0.0.0",
+  "authors": [
+    "Raul Vieira <radvieira@gmail.com>"
+  ],
+  "description": "An example of how to bridge non-ng with ng",
+  "keywords": [
+    "angular",
+    "integration"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2",
+    "bootstrap": "~3.3.1"
+  }
+}
