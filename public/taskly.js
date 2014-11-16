@@ -69,13 +69,15 @@
       var message = document.createElement('p');
       message.classList.add('alert');
       message.classList.add('alert-success');
-      message.innerHTML = task.name + ' <strong>Completed!</strong>'
+      message.innerHTML = task.name + ' <strong>Completed!</strong>';
 
       this.appendChild(message);
 
       setTimeout(function() {
         this.removeChild(message);
       }.bind(taskForm), 1500);
+
+      this.reset();
 
     }.bind(taskForm));
 
