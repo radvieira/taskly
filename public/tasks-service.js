@@ -27,14 +27,18 @@
           },
 
           selected: function (index) {
+
             nowEditing = index;
             $rootScope.$broadcast('task-selected', tasks[nowEditing]);
+
           },
 
           completed: function(index) {
+
             var task = tasks[index];
             tasks.splice(index, 1);
             $rootScope.$broadcast('task-completed', task);
+
           }
 
         }
