@@ -31,11 +31,9 @@
           </form>
         </section>
 
-        <section class="col-md-4">
+        <section data-ng-app="taskly" class="col-md-4">
           <h2>To Dos</h2>
-          <ul class="list-group">
-            <li class="list-group-item">Pick up some  milk</li>
-          </ul>
+          <task-list></task-list>
         </section>
 
       </div>
@@ -43,7 +41,8 @@
     </div>
 
     <script src="bower_components/angular/angular.js"></script>
-    <script src="app.js"></script>
+    <script src="task-list.js"></script>
+    <script src="taskly.js"></script>
 
   </body>
 </html>
