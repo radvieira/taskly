@@ -1,5 +1,5 @@
 /**
- * A demonstration of integrating Angular and non-angular.
+ * A demonstration of integrating Angular with non-angular.
  *
  * Taskly is a web application with a part of its page being a TaskList Angular App.
  * Taskly, initializes the TaskList App by getting a handle on the TaskList's TaskProvider and setting
