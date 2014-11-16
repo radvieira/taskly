@@ -31,9 +31,7 @@
 
       templateUrl: 'tpl/task-list.html',
 
-      scope: {
-        config: '='
-      },
+      scope: {},
 
       link: function($scope) {
 
