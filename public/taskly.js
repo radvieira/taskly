@@ -64,23 +64,26 @@
   //listen for task-completed event and update non-angular elements
   taskly.run(function($rootScope) {
 
-    $rootScope.$on('task-completed', function(e, task) {
 
-      var message = document.createElement('p');
-      message.classList.add('alert');
-      message.classList.add('alert-success');
-      message.innerHTML = task.name + ' <strong>Completed!</strong>';
+    var messages = document.querySelector('.messages');
 
-      this.appendChild(message);
+      $rootScope.$on('task-completed', function(e, task) {
 
-      setTimeout(function() {
-        this.removeChild(message);
-      }.bind(taskForm), 1500);
+        var message = document.createElement('p');
+        message.classList.add('alert');
+        message.classList.add('alert-success');
+        message.classList.add('text-center');
+        message.innerHTML = task.name + ' <strong>Completed!</strong>';
 
-      this.reset();
+        this.appendChild(message);
 
-    }.bind(taskForm));
+        setTimeout(function() {
+          this.removeChild(message);
+        }.bind(messages), 500);
 
+        taskForm.reset();
+
+      }.bind(messages));
   });
 
 }(angular));

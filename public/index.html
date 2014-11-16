@@ -4,12 +4,24 @@
       <meta charset="UTF-8">
       <title>Ng-ify</title>
       <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+      <style>
+        .messages .alert {
+          position: absolute;
+          left: 0px;
+          width: 100%;
+        }
+      </style>
   </head>
   <body>
 
     <header class="navbar">
 
       <div class="container">
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-8 messages"></div>
+          <div class="col-md-2"></div>
+        </div>
         <h1>Taskly</h1>
       </div>
 
