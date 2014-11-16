@@ -15,7 +15,7 @@
 
       $get: function() {
         return {
-          tasks: tasks
+          list: tasks
         }
       }
 
@@ -35,7 +35,7 @@
 
       link: function($scope) {
 
-        $scope.tasks = Tasks.tasks;
+        $scope.tasks = Tasks.list;
 
       }
 
