@@ -15,7 +15,10 @@
 
       $get: function() {
         return {
-          list: tasks
+          list: tasks,
+          newTask: function(task) {
+            tasks.push(task)
+          }
         }
       }
 

@@ -15,4 +15,22 @@
 
   });
 
+  taskly.run(function($rootScope, Tasks) {
+
+    var taskForm = document.querySelector('.task-entry');
+
+    taskForm.addEventListener('submit', function(e) {
+
+      e.preventDefault();
+
+      Tasks.newTask({ name: this.task.value });
+
+      $rootScope.$digest();
+
+      this.reset();
+
+    }.bind(taskForm));
+
+  });
+
 }(angular));
