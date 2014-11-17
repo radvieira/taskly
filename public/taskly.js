@@ -64,7 +64,6 @@
   //listen for task-completed event and update non-angular elements
   taskly.run(function($rootScope) {
 
-
     var messages = document.querySelector('.messages');
 
       $rootScope.$on('task-completed', function(e, task) {
@@ -84,6 +83,7 @@
         taskForm.reset();
 
       }.bind(messages));
+
   });
 
 }(angular));
