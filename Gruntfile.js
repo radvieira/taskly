@@ -33,3 +33,5 @@ grunt.initConfig({
 });
 
 grunt.loadNpmTasks('grunt-contrib-connect');
+
+grunt.registerTask('serve', ['connect']);
