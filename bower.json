@@ -1,10 +1,10 @@
 {
-  "name": "ng-ify",
+  "name": "taskly",
   "version": "0.0.0",
   "authors": [
     "Raul Vieira <radvieira@gmail.com>"
   ],
-  "description": "An example of how to bridge non-ng with ng",
+  "description": "An example integration of a ng-app with a non-ng app",
   "keywords": [
     "angular",
     "integration"
