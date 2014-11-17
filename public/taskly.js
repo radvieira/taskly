@@ -11,60 +11,57 @@
  * Taskly, binds to a 'task-selected' event broadcasted by the Tasks service to update
  * the form's display value for editing.
  */
-
 ;(function(ng) {
 
-  var taskly = ng.module('taskly', ['task-list']),
+  var onTasksRetrieved = function(tasks) {
 
-    taskForm = document.querySelector('.task-entry');
+    var taskly = ng.module('taskly', ['task-list']),
 
-  taskForm.task.focus();
+      taskForm = document.querySelector('.task-entry');
 
-  //configure the Task list with a list of tasks
-  //this can come from anywhere - async requires manual bootstrapping
-  taskly.config(function(TasksProvider) {
+    taskForm.task.focus();
 
-    TasksProvider.init([{
+    //configure the Task list with a list of tasks
+    //this can come from anywhere - async requires manual bootstrapping
+    taskly.config(function(TasksProvider) {
 
-      name: 'Get some milk!'
+      TasksProvider.init(tasks);
 
-    }]);
+    });
 
-  });
+    //add or update tasks by listing to non-angular form submits
+    taskly.run(function($rootScope, Tasks) {
 
-  //add or update tasks by listing to non-angular form submits
-  taskly.run(function($rootScope, Tasks) {
+      taskForm.addEventListener('submit', function(e) {
 
-    taskForm.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-      e.preventDefault();
+        Tasks.save({ name: this.task.value });
 
-      Tasks.save({ name: this.task.value });
+        $rootScope.$digest();
 
-      $rootScope.$digest();
+        this.reset();
 
-      this.reset();
+      }.bind(taskForm));
 
-    }.bind(taskForm));
+    });
 
-  });
+    //listen for task-selected event and update the non-angular input field
+    taskly.run(function($rootScope) {
 
-  //listen for task-selected event and update the non-angular input field
-  taskly.run(function($rootScope) {
+      $rootScope.$on('task-selected', function(e, task) {
 
-    $rootScope.$on('task-selected', function(e, task) {
+        this.task.value = task.name;
+        this.task.focus();
 
-      this.task.value = task.name;
-      this.task.focus();
+      }.bind(taskForm));
 
-    }.bind(taskForm));
+    });
 
-  });
+    //listen for task-completed event and update non-angular elements
+    taskly.run(function($rootScope) {
 
-  //listen for task-completed event and update non-angular elements
-  taskly.run(function($rootScope) {
-
-    var messages = document.querySelector('.messages');
+      var messages = document.querySelector('.messages');
 
       $rootScope.$on('task-completed', function(e, task) {
 
@@ -84,6 +81,34 @@
 
       }.bind(messages));
 
-  });
+    });
+
+    //kick off the bootstrap process now that we have data.
+    ng.bootstrap(document.getElementById('taskly'), ['taskly']);
+
+  };
+
+  //get the tasks from the backend and kick-off angular bootstrapping on success.
+  (function(success) {
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function() {
+
+      if (this.readyState === 4) {
+        if (this.status === 200) {
+          success(JSON.parse(this.responseText));
+        } else {
+          alert('Could not retrieve tasks!');
+        }
+      }
+
+    }.bind(xhr);
+
+    xhr.open('GET', '/api/tasks', true);
+
+    xhr.send(null);
+
+  }(onTasksRetrieved));
 
 }(angular));

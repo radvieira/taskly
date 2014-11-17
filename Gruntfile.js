@@ -17,7 +17,7 @@ grunt.initConfig({
 
                 res.writeHead(200, { 'Content-Type': 'application/json' });
                 res.write(JSON.stringify([
-                  { name: 'Get some mile' }
+                  { name: 'Get some milk!' }
                 ]));
                 return res.end();
               }
