@@ -28,8 +28,12 @@
 
           selected: function (index) {
 
-            nowEditing = index;
-            $rootScope.$broadcast('task-selected', tasks[nowEditing]);
+            if (!isNaN(index)) {
+              nowEditing = index;
+              $rootScope.$broadcast('task-selected', tasks[nowEditing]);
+            } else {
+              return nowEditing;
+            }
 
           },
 
@@ -37,6 +41,7 @@
 
             var task = tasks[index];
             tasks.splice(index, 1);
+            nowEditing = -1;
             $rootScope.$broadcast('task-completed', task);
 
           }

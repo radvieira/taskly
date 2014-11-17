@@ -29,6 +29,12 @@
 
         };
 
+        $scope.isSelected = function(index) {
+
+          return Tasks.selected() === index;
+
+        }
+
       }
 
     };
