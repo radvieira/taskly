@@ -5,7 +5,7 @@
 
   taskList.provider('Tasks', function() {
 
-    var tasks = [], nowEditing = -1;
+    var tasks = [], nowSelected = -1;
 
     return {
 
@@ -21,18 +21,18 @@
 
           save: function (task) {
 
-            tasks[nowEditing > -1 ? nowEditing : tasks.length] = task;
-            nowEditing = -1;
+            tasks[nowSelected > -1 ? nowSelected : tasks.length] = task;
+            nowSelected = -1;
 
           },
 
           selected: function (index) {
 
             if (!isNaN(index)) {
-              nowEditing = index;
-              $rootScope.$broadcast('task-selected', tasks[nowEditing]);
+              nowSelected = index;
+              $rootScope.$broadcast('task-selected', tasks[nowSelected]);
             } else {
-              return nowEditing;
+              return nowSelected;
             }
 
           },
@@ -41,7 +41,7 @@
 
             var task = tasks[index];
             tasks.splice(index, 1);
-            nowEditing = -1;
+            nowSelected = -1;
             $rootScope.$broadcast('task-completed', task);
 
           }
