@@ -9,7 +9,7 @@
 
       restrict: 'AE',
 
-      templateUrl: 'tpl/task-list.html',
+      templateUrl: 'task-list/tpl/task-list.html',
 
       scope: {},
 
