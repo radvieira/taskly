@@ -12,4 +12,4 @@ grunt.initConfig({
 
 grunt.loadNpmTasks('grunt-connect');
 
-grunt.registerTask('default', 'connect');
+grunt.registerTask('serve', 'connect');

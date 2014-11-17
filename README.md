@@ -13,7 +13,7 @@ After cloning this repository run the following command from the project root:
 Start the Server
 ===
 	
-	grunt connect
+	grunt serve
 	
 Open [http://localhost:9000]('http://localhost:9000')
 
